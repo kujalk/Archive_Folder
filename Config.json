@@ -1,0 +1,15 @@
+{
+    "Archive":
+    [
+        {
+            "SourceFolder":"E:\\Archive\\Source1",
+            "DestinationFolder":"E:\\Archive\\Destination1",
+            "NumberOfDays":"10"
+        },
+        {
+            "SourceFolder":"E:\\Archive\\Source2",
+            "DestinationFolder":"E:\\Archive\\Destination2",
+            "NumberOfDays":"2"
+        }
+    ]
+}
