@@ -2,7 +2,7 @@
 Used to archive the folders based on date
 
 1. How to execute the script?
-- File the JSON files according to the requirements (Refer attached sample JSON)
+- Fill the JSON files according to the requirements (Refer attached sample JSON)
 - ./Archive_Folders.ps1 -ConfigFile "C:\Script\Config.json"
 
 2. Log file will be stored in the same place where the script is located
