@@ -52,6 +52,13 @@ try
     {
         $Config = Get-Content -Path $ConfigFile -ErrorAction Stop | ConvertFrom-Json
 
+        if(-not(Test-Path -Path $Config.ziplocation -PathType Leaf))
+        {
+            throw "Unable to find 7zip software"
+        }
+
+        Set-Alias 7zip $Config.ziplocation
+
         foreach ($Folders in $Config.Archive)
         {
             try
@@ -81,7 +88,10 @@ try
                                         New-Item -ItemType Directory -Path $Folders.DestinationFolder -Force -EA Stop
                                     }
         
-                                    Compress-Archive -Path "$($SingleFolder.FullName)\*" -DestinationPath ("{0}\{1}.zip" -f $Folders.DestinationFolder,$SingleFolder.Name) -Force -EA Stop
+                                
+                                    $DestinationZip = ("{0}\{1}.zip" -f $Folders.DestinationFolder,$SingleFolder.Name) 
+                                    7zip a -mx=1  $DestinationZip $SingleFolder.FullName | Out-Null
+
                                     Write-Log "Successfully archived the folder $($SingleFolder.Name)"
 
                                     Write-Log "Going to remove the folder $($SingleFolder.Name)"
